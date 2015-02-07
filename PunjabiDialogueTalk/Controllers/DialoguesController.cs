@@ -40,7 +40,7 @@ namespace PunjabiDialogueTalk.Controllers
         // GET: Dialogues/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace PunjabiDialogueTalk.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown", dialogue.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", dialogue.UserId);
             return View(dialogue);
         }
 
