@@ -290,7 +290,6 @@
     <Content Include="Views\Dialogues\Details.cshtml" />
     <Content Include="Views\Dialogues\Edit.cshtml" />
     <Content Include="Views\Dialogues\Index.cshtml" />
-    <Content Include="Views\Manage\AddDisplayName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
