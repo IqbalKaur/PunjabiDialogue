@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.IO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -107,16 +108,27 @@ namespace PunjabiDialogueTalk.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditMyProfile([Bind(Include = "Id,HomeTown,BirthDate,DisplayName,Email,UserName")] User user)
+        public ActionResult EditMyProfile([Bind(Include = "Id,HomeTown,BirthDate,DisplayName,Email,UserName")] User user, HttpPostedFileBase image)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index", "Manage");
+                return View();
             }
-            return View(user);
+                if (image.ContentLength > 0)
+                {
+                    var filename = System.IO.Path.GetFileName(image.FileName);
+                    var path = System.IO.Path.Combine(Server.MapPath("~/Avatar"), filename);
+                    image.SaveAs(path);
+                    user.Avatar = filename;
+                    db.Entry(user).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+                TempData["Success"] = "you have uploaded song successfully";
+                return RedirectToAction("Index");          
         }
+            
 
         // GET: Profiles/Delete/5
         public ActionResult Delete(string id)

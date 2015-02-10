@@ -211,6 +211,10 @@
     <Compile Include="Migrations\201502092123214_UserUpdated.Designer.cs">
       <DependentUpon>201502092123214_UserUpdated.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502101733312_Avatar.cs" />
+    <Compile Include="Migrations\201502101733312_Avatar.Designer.cs">
+      <DependentUpon>201502101733312_Avatar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dialogue.cs" />
@@ -300,6 +304,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Avatar\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -314,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502092123214_UserUpdated.resx">
       <DependentUpon>201502092123214_UserUpdated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502101733312_Avatar.resx">
+      <DependentUpon>201502101733312_Avatar.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
