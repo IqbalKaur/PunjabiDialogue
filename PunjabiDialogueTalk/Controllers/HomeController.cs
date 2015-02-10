@@ -27,13 +27,13 @@ namespace PunjabiDialogueTalk.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
         // GET: Home/Index
         public ActionResult Index()
         {
+            ViewBag.dialogues = db.Dialogues.ToList();
             return View();
         }
 

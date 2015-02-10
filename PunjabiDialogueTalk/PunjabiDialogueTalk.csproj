@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201502070501305_Dialogue.Designer.cs">
       <DependentUpon>201502070501305_Dialogue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502092123214_UserUpdated.cs" />
+    <Compile Include="Migrations\201502092123214_UserUpdated.Designer.cs">
+      <DependentUpon>201502092123214_UserUpdated.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dialogue.cs" />
@@ -286,6 +290,7 @@
     <Content Include="Views\Dialogues\Details.cshtml" />
     <Content Include="Views\Dialogues\Edit.cshtml" />
     <Content Include="Views\Dialogues\Index.cshtml" />
+    <Content Include="Views\Manage\AddDisplayName.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -300,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502070501305_Dialogue.resx">
       <DependentUpon>201502070501305_Dialogue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502092123214_UserUpdated.resx">
+      <DependentUpon>201502092123214_UserUpdated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

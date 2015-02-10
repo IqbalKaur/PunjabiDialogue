@@ -12,6 +12,7 @@ namespace PunjabiDialogueTalk.Models
     {
         public string HomeTown { get; set; }
         public System.DateTime? BirthDate { get; set; }
+        public string DisplayName { get; set; }
 
         public virtual ICollection<Dialogue> Dialogues { get; set; }
 

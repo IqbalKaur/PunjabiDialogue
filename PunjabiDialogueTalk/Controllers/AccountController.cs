@@ -370,7 +370,8 @@ namespace PunjabiDialogueTalk.Controllers
                 var user = new User { UserName = model.Email, 
                     Email = model.Email,
                     BirthDate = model.BirthDate,
-                    HomeTown = model.HomeTown
+                    HomeTown = model.HomeTown,
+                    DisplayName = model.DisplayName
                 };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
