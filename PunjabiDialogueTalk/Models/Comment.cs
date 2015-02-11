@@ -5,15 +5,16 @@ using System.Web;
 
 namespace PunjabiDialogueTalk.Models
 {
-    public class Dialogue
+    public class Comment
     {
-        public int Id { get; set; }
+        public int Id { get; set;}
         public string Content { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public string UserId { get; set; }
         public virtual User User { get; set; }
 
-        public virtual ICollection<Comment> Comments { get; set; }
+        public string DialogueId { get; set; }
+        public virtual Dialogue Dialogue { get; set; }
     }
 }

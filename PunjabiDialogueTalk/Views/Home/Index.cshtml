@@ -33,7 +33,7 @@
                 {
                     <div class="col-md-12">
                         <h2>@item.Content</h2>
-                        <p>Posted By @item.User.UserName on @item.CreatedAt</p>
+                        <p>Posted By @if(item.User.Avatar != null) {<img src="~/Avatar/@item.User.Avatar"/>} @item.User.UserName on @item.CreatedAt></p>
                     </div>                        
                     
                 }

@@ -16,6 +16,7 @@ namespace PunjabiDialogueTalk.Models
         public string Avatar { get; set; }
 
         public virtual ICollection<Dialogue> Dialogues { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
@@ -29,6 +30,7 @@ namespace PunjabiDialogueTalk.Models
     public class ApplicationDbContext : IdentityDbContext<User>
     {
         public DbSet<Dialogue> Dialogues { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\DialoguesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -215,8 +216,17 @@
     <Compile Include="Migrations\201502101733312_Avatar.Designer.cs">
       <DependentUpon>201502101733312_Avatar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502102302271_Comment.cs" />
+    <Compile Include="Migrations\201502102302271_Comment.Designer.cs">
+      <DependentUpon>201502102302271_Comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502110353396_CommentRelation.cs" />
+    <Compile Include="Migrations\201502110353396_CommentRelation.Designer.cs">
+      <DependentUpon>201502110353396_CommentRelation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Dialogue.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -301,6 +311,11 @@
     <Content Include="Views\Profiles\Edit.cshtml" />
     <Content Include="Views\Profiles\Index.cshtml" />
     <Content Include="Views\Profiles\EditMyProfile.cshtml" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -322,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502101733312_Avatar.resx">
       <DependentUpon>201502101733312_Avatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502102302271_Comment.resx">
+      <DependentUpon>201502102302271_Comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502110353396_CommentRelation.resx">
+      <DependentUpon>201502110353396_CommentRelation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
