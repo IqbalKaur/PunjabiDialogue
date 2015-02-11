@@ -39,7 +39,8 @@ namespace PunjabiDialogueTalk.Controllers
         // GET: Comments/Create
         public ActionResult Create()
         {
-            ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown");
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.DialogueId = new SelectList(db.Dialogues, "Id", "Id");
             return View();
         }
 
@@ -57,7 +58,8 @@ namespace PunjabiDialogueTalk.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown", comment.UserId);
+            ViewBag.UserId = new SelectList(db.Users, "Id", "UserName", comment.UserId);
+            ViewBag.DialogueId = new SelectList(db.Dialogues, "Id", "Id", comment.DialogueId);
             return View(comment);
         }
 

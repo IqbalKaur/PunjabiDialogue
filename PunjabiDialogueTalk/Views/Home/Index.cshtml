@@ -29,14 +29,34 @@
 
 <div class="row">
     <div class="col-md-12">      
-                @foreach (var item in ViewBag.dialogues as List<PunjabiDialogueTalk.Models.Dialogue>)
+        @foreach (var item in ViewBag.dialogues as List<PunjabiDialogueTalk.Models.Dialogue>)
+        {
+            <div class="col-md-12">
+                <h2>@item.Content</h2>
+                <p>
+                    Posted By
+                    @if (item.User != null)
+                    {
+                        if (item.User.Avatar != null)
+                        {
+                            <img src="~/Avatar/@item.User.Avatar" />
+                        }
+                        @item.User.UserName
+                    }
+                    @*@if(item.User.Avatar != null)
+                        {
+                            <img src="~/Avatar/@item.User.Avatar"/>
+                        }*@
+                    on @item.CreatedAt
+                </p>
+                @*@foreach (var item2 in item.Comments as List<PunjabiDialogueTalk.Models.Comment>)
                 {
-                    <div class="col-md-12">
-                        <h2>@item.Content</h2>
-                        <p>Posted By @if(item.User.Avatar != null) {<img src="~/Avatar/@item.User.Avatar"/>} @item.User.UserName on @item.CreatedAt></p>
-                    </div>                        
-                    
-                }
+                    <div class="col-md-12">*@
+                        @Html.Partial("CommentForm")
+                    @*</div>
+                }*@
+            </div>
+        }
     </div>
 </div>
 @section Scripts {

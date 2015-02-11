@@ -57,5 +57,34 @@ namespace PunjabiDialogueTalk.Controllers
             }
             return View(dialogue);
         }
+
+        // GET: Home/Create
+        public ActionResult CreateComment()
+        {
+            ViewBag.comments = db.Comments.ToList();
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown");
+            return View();
+        }
+
+        // POST: Home/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateComment([Bind(Include = "Id,Content,UserId")] Comment comment, Dialogue dialogue)
+        {
+            if (ModelState.IsValid)
+            {
+                comment.CreatedAt = DateTime.Now;
+                comment.DialogueId = dialogue.Id;
+                comment.User = db.Users.Find(User.Identity.GetUserId());
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            //ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown", comment.UserId);
+            return View(comment);
+        }
     }
 }

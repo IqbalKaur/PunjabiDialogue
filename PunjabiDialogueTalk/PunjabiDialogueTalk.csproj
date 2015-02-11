@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201502110353396_CommentRelation.Designer.cs">
       <DependentUpon>201502110353396_CommentRelation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502112107154_commentDialogueIdFixed.cs" />
+    <Compile Include="Migrations\201502112107154_commentDialogueIdFixed.Designer.cs">
+      <DependentUpon>201502112107154_commentDialogueIdFixed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -316,6 +320,7 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
+    <Content Include="Views\Home\CommentForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -343,6 +348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502110353396_CommentRelation.resx">
       <DependentUpon>201502110353396_CommentRelation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502112107154_commentDialogueIdFixed.resx">
+      <DependentUpon>201502112107154_commentDialogueIdFixed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

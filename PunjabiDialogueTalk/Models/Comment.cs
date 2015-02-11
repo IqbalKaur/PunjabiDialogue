@@ -14,7 +14,7 @@ namespace PunjabiDialogueTalk.Models
         public string UserId { get; set; }
         public virtual User User { get; set; }
 
-        public string DialogueId { get; set; }
+        public int DialogueId { get; set; }
         public virtual Dialogue Dialogue { get; set; }
     }
 }
