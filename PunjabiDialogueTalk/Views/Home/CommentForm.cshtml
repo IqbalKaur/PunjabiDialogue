@@ -3,6 +3,7 @@
 @using (Html.BeginForm("CreateComment", "Home")) 
 {
     @Html.AntiForgeryToken()
+    @Html.Hidden("DialogueId", ViewData["DialogueId"])
     
     <div class="form-horizontal">
         <hr />

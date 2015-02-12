@@ -71,12 +71,11 @@ namespace PunjabiDialogueTalk.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateComment([Bind(Include = "Id,Content,UserId")] Comment comment, Dialogue dialogue)
+        public ActionResult CreateComment([Bind(Include = "Id,Content,UserId,DialogueId")] Comment comment, Dialogue dialogue)
         {
             if (ModelState.IsValid)
             {
                 comment.CreatedAt = DateTime.Now;
-                comment.DialogueId = dialogue.Id;
                 comment.User = db.Users.Find(User.Identity.GetUserId());
                 db.Comments.Add(comment);
                 db.SaveChanges();

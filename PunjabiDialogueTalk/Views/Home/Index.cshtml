@@ -43,20 +43,32 @@
                         }
                         @item.User.UserName
                     }
-                    @*@if(item.User.Avatar != null)
-                        {
-                            <img src="~/Avatar/@item.User.Avatar"/>
-                        }*@
                     on @item.CreatedAt
                 </p>
-                @*@foreach (var item2 in item.Comments as List<PunjabiDialogueTalk.Models.Comment>)
-                {
-                    <div class="col-md-12">*@
-                        @Html.Partial("CommentForm")
-                    @*</div>
-                }*@
+                @Html.Partial("CommentForm", new ViewDataDictionary { { "DialogueId", item.Id } })                
             </div>
-        }
+            if (item.Comments != null) 
+            { 
+                foreach (var item1 in item.Comments)
+                {
+                    <div class="col-md-12">                   
+                       @item1.Content 
+                        <p>
+                            Posted By
+                            @if (item1.User != null) 
+                            {
+                                if (item1.User.Avatar != null)
+                                {
+                                    <img src="~/Avatar/@item1.User.Avatar" />
+                                }
+                                @item1.User.UserName
+                            }
+                            on @item1.CreatedAt
+                        </p>
+                    </div>
+                }
+            }
+        }      
     </div>
 </div>
 @section Scripts {
