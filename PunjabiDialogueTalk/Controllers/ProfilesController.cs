@@ -125,7 +125,6 @@ namespace PunjabiDialogueTalk.Controllers
                     db.SaveChanges();
 
                 }
-                TempData["Success"] = "you have uploaded song successfully";
                 return RedirectToAction("Index");          
         }
             
