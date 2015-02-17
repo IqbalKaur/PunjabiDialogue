@@ -49,7 +49,6 @@ namespace PunjabiDialogueTalk.Controllers
                 dialogue.CreatedAt = DateTime.UtcNow;
                 // http://stackoverflow.com/questions/19936433/asp-net-mvc-5-identity-application-user-as-foreign-key
                 dialogue.User = db.Users.Find(User.Identity.GetUserId());
-
                 db.Dialogues.Add(dialogue);
                 await db.SaveChangesAsync();
                 TempData["Success"] = "Your dialogue has been posted";

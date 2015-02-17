@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using System.Drawing.Imaging;
 using PunjabiDialogueTalk.Models;
 
 namespace PunjabiDialogueTalk.Controllers
@@ -103,6 +104,38 @@ namespace PunjabiDialogueTalk.Controllers
             return View(user);
         }
 
+        /* Save and Resize the image */
+        public string saveResizeImage(HttpPostedFileBase image)
+        {
+            var imgpath = System.IO.Path.GetFileName(image.FileName);
+
+            if (imgpath != null)
+            {
+                Guid uid = Guid.NewGuid(); //get a unique identifier variable
+                string FilePathStr = Server.MapPath("~/") + "Avatar";
+
+                if (!(Directory.Exists(FilePathStr)))
+                {
+                    Directory.CreateDirectory(FilePathStr);
+                }
+
+                string SaveLocation = "~/Avatar/" + imgpath;
+                string fileExtention = image.ContentType;
+                int fileLenght = image.ContentLength;
+                if (fileExtention == "image/png" || fileExtention == "image/jpeg" || fileExtention == "image/x-png")
+                {
+                    if (fileLenght <= 1048576)
+                    {
+                        System.Drawing.Bitmap bmpUploadedImage = new System.Drawing.Bitmap(image.InputStream);
+
+                        System.Drawing.Image objImage = Helpers.Common.ScaleImage(bmpUploadedImage, 81);
+                        objImage.Save(Server.MapPath(SaveLocation), ImageFormat.Jpeg);
+                    }
+                }
+            }
+            return imgpath;
+        }
+
         // POST: Profiles/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -110,22 +143,38 @@ namespace PunjabiDialogueTalk.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditMyProfile([Bind(Include = "Id,HomeTown,BirthDate,DisplayName,Email,UserName")] User user, HttpPostedFileBase image)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                return View();
+                var userfromDb = db.Users.Where(u => u.Id == user.Id).First();
+                userfromDb.HomeTown = user.HomeTown;
+                userfromDb.BirthDate = user.BirthDate;
+                userfromDb.DisplayName = user.DisplayName;
+                userfromDb.Email = user.Email;
+                userfromDb.UserName = user.UserName;
+                var filename = saveResizeImage(image);
+                userfromDb.Avatar = filename;
+                //if (image.ContentLength > 0)
+                //{
+                //    var filename = System.IO.Path.GetFileName(image.FileName);
+                //    var path = System.IO.Path.Combine(Server.MapPath("~/Avatar"), filename);
+                //    image.SaveAs(path);
+                //    userfromDb.Avatar = filename;
+                //}
+                db.SaveChanges();
+                return RedirectToAction("Index");
+                //db.Entry(user).CurrentValues.SetValues(userfromDb);           
+                //db.Entry(user).State = EntityState.Modified;
+                //if (image.ContentLength > 0)
+                //{
+                //    var filename = System.IO.Path.GetFileName(image.FileName);
+                //    var path = System.IO.Path.Combine(Server.MapPath("~/Avatar"), filename);
+                //    image.SaveAs(path);
+                //    user.Avatar = filename;                  
+                //    db.SaveChanges();
+                //    return RedirectToAction("Index"); 
+                //}              
             }
-                if (image.ContentLength > 0)
-                {
-                    var filename = System.IO.Path.GetFileName(image.FileName);
-                    var path = System.IO.Path.Combine(Server.MapPath("~/Avatar"), filename);
-                    image.SaveAs(path);
-                    user.Avatar = filename;
-                    db.Entry(user).State = EntityState.Modified;
-                    db.SaveChanges();
-
-                }
-                return RedirectToAction("Index");          
+            return View(user);       
         }
             
 
