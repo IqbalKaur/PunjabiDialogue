@@ -143,6 +143,7 @@ namespace PunjabiDialogueTalk.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditMyProfile([Bind(Include = "Id,HomeTown,BirthDate,DisplayName,Email,UserName")] User user, HttpPostedFileBase image)
         {
+            
             if (ModelState.IsValid)
             {
                 var userfromDb = db.Users.Where(u => u.Id == user.Id).First();
@@ -151,28 +152,13 @@ namespace PunjabiDialogueTalk.Controllers
                 userfromDb.DisplayName = user.DisplayName;
                 userfromDb.Email = user.Email;
                 userfromDb.UserName = user.UserName;
-                var filename = saveResizeImage(image);
-                userfromDb.Avatar = filename;
-                //if (image.ContentLength > 0)
-                //{
-                //    var filename = System.IO.Path.GetFileName(image.FileName);
-                //    var path = System.IO.Path.Combine(Server.MapPath("~/Avatar"), filename);
-                //    image.SaveAs(path);
-                //    userfromDb.Avatar = filename;
-                //}
+                if (image != null)
+                {
+                    var filename = saveResizeImage(image);
+                    userfromDb.Avatar = filename;
+                }               
                 db.SaveChanges();
-                return RedirectToAction("Index");
-                //db.Entry(user).CurrentValues.SetValues(userfromDb);           
-                //db.Entry(user).State = EntityState.Modified;
-                //if (image.ContentLength > 0)
-                //{
-                //    var filename = System.IO.Path.GetFileName(image.FileName);
-                //    var path = System.IO.Path.Combine(Server.MapPath("~/Avatar"), filename);
-                //    image.SaveAs(path);
-                //    user.Avatar = filename;                  
-                //    db.SaveChanges();
-                //    return RedirectToAction("Index"); 
-                //}              
+                return RedirectToAction("Index");            
             }
             return View(user);       
         }

@@ -54,7 +54,7 @@ namespace PunjabiDialogueTalk.Controllers
                 TempData["Success"] = "Your dialogue has been posted";
                 return RedirectToAction("Index");
             }
-            ViewData["ErrorUploading"] = "Oops! There is some problem. Try agin.";
+            ViewData["ErrorUploading"] = "Oops! There is some problem. Try again.";
             return View(dialogue);
         }
 
@@ -78,9 +78,10 @@ namespace PunjabiDialogueTalk.Controllers
                 comment.User = db.Users.Find(User.Identity.GetUserId());
                 db.Comments.Add(comment);
                 db.SaveChanges();
+                TempData["SuccessComment"] = "Your comment has been posted";
                 return RedirectToAction("Index");
             }
-
+            ViewData["ErrorUploadingComment"] = "Oops! There is some problem. Try again.";
             //ViewBag.UserId = new SelectList(db.Users, "Id", "HomeTown", comment.UserId);
             return View(comment);
         }

@@ -46,18 +46,28 @@
         {
             <div class="col-md-12">
                 <h2>@item.Content</h2>
-                <p>
-                    Posted By
-                    @if (item.User != null)
+                @if (item.User != null)
+                {
+                    if (item.User.Avatar != null)
                     {
-                        if (item.User.Avatar != null)
-                        {
-                            <img src="~/Avatar/@item.User.Avatar" />
-                        }
-                        @item.User.UserName
+                        <img src="~/Avatar/@item.User.Avatar" />
                     }
+                    else
+                    {
+                        <img src="~/Avatar/avatar-default.jpg" />
+                    }
+                    if (item.User.DisplayName != null)
+                    {
+                        <b>@item.User.DisplayName</b>
+                    }
+                    else
+                    {
+                        <b>@item.User.UserName</b>
+                    }
+
+                }                                               
                     on @Common.convertUTCToEST(item.CreatedAt)
-                </p>
+                              
                 @Html.Partial("CommentForm", new ViewDataDictionary {{"DialogueId", item.Id }})                
             </div>
             if (item.Comments != null) 
@@ -67,19 +77,30 @@
                     <div class="col-md-12">                   
                         @item1.Content 
                         <p>
-                            Posted By
                             @if (item1.User != null) 
                             {
                                 if (item1.User.Avatar != null)
                                 {
                                     <img src="~/Avatar/@item1.User.Avatar" />
                                 }
-                                @item1.User.UserName
+                                else
+                                {
+                                    <img src="~/Avatar/avatar-default.jpg" />
+                                }
+                                if (item.User.DisplayName != null)
+                                {
+                                    <b>@item.User.DisplayName</b>
+                                }
+                                else
+                                {
+                                    <b>@item.User.UserName</b>
+                                }
                             }
                             on @Common.convertUTCToEST(item1.CreatedAt)
                         </p>
                     </div>
                 }
+                <hr />
             }
         }      
     </div>
